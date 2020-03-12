@@ -11,9 +11,6 @@ namespace Editor.Tests
 {
     public class BuildingsTest
     {
-        private BuildingUpdateJob _job;
-        private NativeArray<Building.Data> _buildingDataArray;
-        
         [UnityTest]
         public IEnumerator PowerConsumptionTest()
         {
@@ -33,14 +30,14 @@ namespace Editor.Tests
                 buildingData[i] = new Building.Data(manager.buildings[i]);
             }
             
-            _buildingDataArray = new NativeArray<Building.Data>(buildingData, Allocator.Persistent);
+            var buildingDataArray = new NativeArray<Building.Data>(buildingData, Allocator.Persistent);
             
-            _job = new BuildingUpdateJob
+            var job = new BuildingUpdateJob
             {
-                BuildingDataArray = _buildingDataArray
+                BuildingDataArray = buildingDataArray
             };
             
-            var jobHandle = _job.Schedule(manager.buildings.Count, 1);
+            var jobHandle = job.Schedule(manager.buildings.Count, 1);
             jobHandle.Complete();
             
             Assert.True(buildingData[0].PowerUsage > 0 ); // surprise. it is zero.
