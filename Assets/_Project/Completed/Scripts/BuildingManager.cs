@@ -7,7 +7,7 @@ namespace InfallibleCode.Completed
 {
     public class BuildingManager : MonoBehaviour
     {
-        [SerializeField] private List<Building> buildings;
+        [SerializeField] public List<Building> buildings;
         
         private BuildingUpdateJob _job;
         private NativeArray<Building.Data> _buildingDataArray;

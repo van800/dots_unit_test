@@ -4,7 +4,7 @@ namespace InfallibleCode.Completed
 {
     public class Building : MonoBehaviour
     {
-        [SerializeField] private int floors;
+        [SerializeField] public int floors;
 
         public struct Data
         {
